@@ -1,0 +1,26 @@
+DeNT mini app build and run instructions on Ascent, used during OLCF Hackathon at Oak Ridge National Lab 10/11 - 10/27 2021
+
+Run ./install.sh from the DeNTminiapp directory to build a directory of third party libraries
+Builds: glvis-3.4 serial, mfem-4.2 parallel cuda
+
+Change the output directory to a scratch directory as needed in miniapp.cpp by changing the directory in lines 284-290 
+Run ./compile.sh to compile miniapp.cpp for cuda use, or compile-serial.sh for serial cpu use. 
+
+Submit on Summit using bsub run-cuda.lsf or bsub run-amgx-profile.lsf for use with NVIDIA profiling tools
+
+Visualize results by running the following from the DeNTminiapp directory:
+../tpls/glvis-3.4/glvis -m <meshfile.mesh> -g <path/to/outputfile>
+Example:
+../tpls/glvis-3.4/glvis -m 1_10x1_10.mesh -g /gpfs/wolf/gen167/scratch/clemency/output/1/sf.gf
+
+                                     88           
+  ,d                           ,d    88           
+  88                           88    88           
+MM88MMM ,adPPYba,  ,adPPYba, MM88MMM 88,dPPYba,   
+  88   a8P_____88 a8P_____88   88    88P'    "8a  
+  88   8PP""""""" 8PP"""""""   88    88       88  
+  88,  "8b,   ,aa "8b,   ,aa   88,   88       88  
+  "Y888 `"Ybbd8"'  `"Ybbd8"'   "Y888 88       88  
+https://ascii.co.uk/art/teeth
+
+

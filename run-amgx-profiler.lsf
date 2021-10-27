@@ -1,0 +1,19 @@
+UB -P GEN167
+#BSUB -W 1:00
+#BSUB -nnodes 1
+#BSUB -alloc_flags gpudefault
+#BSUB -J DeNTapp
+#BSUB -o %J.out
+#BSUB -e %J.err
+
+date
+module load cuda
+module load amgx
+module load nsight-systems
+echo $WS
+echo $DENT
+cp $DENT/DeNTapp $WS
+cp $DENT/*.mat $WS
+cp $DENT/*.quad $WS
+cd $WS
+jsrun -n 1 -g 1 --smpiargs="-disable_gpu_hooks" nsys profile ./DeNTapp -d cu.mesh --amgx-file $DENT/FGMRES.json
